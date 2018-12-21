@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Meteor, { withTracker } from 'react-native-meteor';
 import { Text, View } from 'react-native';
 import { styles } from "./styles";
 
@@ -13,14 +14,34 @@ class Component extends React.Component {
 						this.props.strings['welcome']
 					}
 				</Text>
+				<Text style={styles.instructions}>
+					{
+						JSON.stringify(this.props.Meteor.status)
+					}
+				</Text>
 			</View>
 		);
 	}
 
 }
 
+const Tracker = withTracker(() => {
+	Meteor.subscribe('users_db');
+	return {
+		Meteor: {
+			collection: {
+				users: Meteor.collection('users').find()
+			},
+			user: Meteor.user(),
+			userId: Meteor.userId(),
+			status: Meteor.status(),
+			loggingIn: Meteor.loggingIn()
+		}
+	};
+})(Component);
+
 export const HomePage = connect((store) => {
 	return {
 		strings: store['LocaleReducer']['strings']
 	};
-})(Component);
+})(Tracker);

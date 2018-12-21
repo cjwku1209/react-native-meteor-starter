@@ -1,4 +1,4 @@
-# react-native-starter
+# react-native-meteor-starter
 
 https://github.com/pkcwong/react-native-meteor-starter
 

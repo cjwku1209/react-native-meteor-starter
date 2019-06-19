@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Meteor, { withTracker } from 'react-native-meteor';
 import { Text, View } from 'react-native';
+import { LocaleAction } from "../../redux/actions/locale-action";
 import { styles } from "./styles";
 
 class Component extends React.Component {
@@ -21,6 +22,10 @@ class Component extends React.Component {
 				</Text>
 			</View>
 		);
+	}
+
+	componentDidMount() {
+		this.props.dispatch(LocaleAction.load('en', require('./locale-en.json')));
 	}
 
 }

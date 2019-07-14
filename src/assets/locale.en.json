@@ -1,0 +1,12 @@
+{
+  "welcome": "Welcome to React Native!",
+  "serverIpAddress": "Server IP address:",
+  "connect": "Connect",
+  "username": "Username",
+  "password": "Password",
+  "login": "Login",
+  "logout": "Logout",
+  "connected": "Connected",
+  "status": "Status",
+  "authentication": "Authentication"
+}

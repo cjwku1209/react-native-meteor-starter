@@ -1,7 +1,7 @@
-import { LocaleAction } from "../actions/locale-action";
+import { LocaleAction } from "./locale-action";
 
 const initialState = {
-	locale: 'en',
+	locale: "en",
 	strings: {},
 	data: {}
 };

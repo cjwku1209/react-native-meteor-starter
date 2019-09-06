@@ -21,102 +21,101 @@ class Component extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
-				<View>
-					<View style={styles.container}>
+				<View style={styles.container}>
+					<Text>
+						{this.props.LocaleReducer.strings["serverIpAddress"]}
+					</Text>
+					<TextInput
+						style={styles.input}
+						keyboardType="decimal-pad"
+						value={this.state.server}
+						onChangeText={(text) => {
+							this.setState({
+								server: text
+							});
+						}}
+					/>
+					<TouchableOpacity
+						style={styles.button}
+						onPress={() => {
+							this.props.dispatch(MeteorAction.connect("ws://" + this.state.server + "/websocket"));
+						}}
+					>
 						<Text>
-							{this.props.LocaleReducer.strings["serverIpAddress"]}
+							Connect
 						</Text>
-						<TextInput
-							style={styles.input}
-							value={this.state.server}
-							onChangeText={(text) => {
-								this.setState({
-									server: text
-								});
-							}}
-						/>
-						<TouchableOpacity
-							style={styles.button}
-							onPress={() => {
-								this.props.dispatch(MeteorAction.connect("ws://" + this.state.server + "/websocket"));
-							}}
-						>
-							<Text>
-								Connect
-							</Text>
-						</TouchableOpacity>
-					</View>
-					<View style={styles.container}>
-						{
-							(() => {
-								if (this.props.Meteor.user === null) {
-									return (
-										<React.Fragment>
-											<Text>
-												{this.props.LocaleReducer.strings["username"]}
-											</Text>
-											<TextInput
-												style={styles.input}
-												value={this.state.username}
-												onChangeText={(text) => {
-													this.setState({
-														username: text
-													});
-												}}
-											/>
-											<Text>
-												{this.props.LocaleReducer.strings["password"]}
-											</Text>
-											<TextInput
-												style={styles.input}
-												value={this.state.password}
-												onChangeText={(text) => {
-													this.setState({
-														password: text
-													});
-												}}
-											/>
-											<TouchableOpacity
-												style={styles.button}
-												onPress={() => {
-													this.props.dispatch(AuthAction.login(this.state.username, this.state.password));
-												}}
-											>
-												<Text>
-													{this.props.LocaleReducer.strings["login"]}
-												</Text>
-											</TouchableOpacity>
-										</React.Fragment>
-									);
-								}
+					</TouchableOpacity>
+				</View>
+				<View style={styles.container}>
+					{
+						(() => {
+							if (this.props.Meteor.user === null) {
 								return (
 									<React.Fragment>
+										<Text>
+											{this.props.LocaleReducer.strings["username"]}
+										</Text>
+										<TextInput
+											style={styles.input}
+											value={this.state.username}
+											onChangeText={(text) => {
+												this.setState({
+													username: text
+												});
+											}}
+										/>
+										<Text>
+											{this.props.LocaleReducer.strings["password"]}
+										</Text>
+										<TextInput
+											style={styles.input}
+											value={this.state.password}
+											onChangeText={(text) => {
+												this.setState({
+													password: text
+												});
+											}}
+										/>
 										<TouchableOpacity
 											style={styles.button}
 											onPress={() => {
-												this.props.dispatch(AuthAction.logout());
+												this.props.dispatch(AuthAction.login(this.state.username, this.state.password));
 											}}
 										>
 											<Text>
-												{this.props.LocaleReducer.strings["logout"]}
+												{this.props.LocaleReducer.strings["login"]}
 											</Text>
 										</TouchableOpacity>
 									</React.Fragment>
 								);
-							})()
-						}
-					</View>
-					<View style={styles.container}>
-						<Text>
-							{this.props.LocaleReducer.strings["connected"] + ": " + JSON.stringify(this.props.Meteor.status.connected)}
-						</Text>
-						<Text>
-							{this.props.LocaleReducer.strings["status"] + ": " + this.props.Meteor.status.status}
-						</Text>
-						<Text>
-							{this.props.LocaleReducer.strings["authentication"] + ": " + this.props.Meteor.userId}
-						</Text>
-					</View>
+							}
+							return (
+								<React.Fragment>
+									<TouchableOpacity
+										style={styles.button}
+										onPress={() => {
+											this.props.dispatch(AuthAction.logout());
+										}}
+									>
+										<Text>
+											{this.props.LocaleReducer.strings["logout"]}
+										</Text>
+									</TouchableOpacity>
+								</React.Fragment>
+							);
+						})()
+					}
+				</View>
+				<View style={styles.container}>
+					<Text>
+						{this.props.LocaleReducer.strings["connected"] + ": " + JSON.stringify(this.props.Meteor.status.connected)}
+					</Text>
+					<Text>
+						{this.props.LocaleReducer.strings["status"] + ": " + this.props.Meteor.status.status}
+					</Text>
+					<Text>
+						{this.props.LocaleReducer.strings["authentication"] + ": " + this.props.Meteor.userId}
+					</Text>
 				</View>
 			</React.Fragment>
 		);

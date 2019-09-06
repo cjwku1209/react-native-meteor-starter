@@ -1,5 +1,5 @@
 import { Platform, View } from 'react-native';
-import NetInfo from "@react-native-community/netinfo";
+import NetInfo from '@react-native-community/netinfo';
 
 import reactMixin from 'react-mixin';
 import Trackr from 'trackr';
@@ -77,8 +77,12 @@ module.exports = {
     Data.ddp && Data.ddp.connect();
   },
   connect(endpoint, options) {
-    if (!endpoint) endpoint = Data._endpoint;
-    if (!options) options = Data._options;
+    if (!endpoint) {
+      endpoint = Data._endpoint;
+    }
+    if (!options) {
+      options = Data._options;
+    }
 
     Data._endpoint = endpoint;
     Data._options = options;
@@ -117,7 +121,9 @@ module.exports = {
 
       console.info('Disconnected from DDP server.');
 
-      if (!Data.ddp.autoReconnect) return;
+      if (!Data.ddp.autoReconnect) {
+        return;
+      }
 
       if (!lastDisconnect || new Date() - lastDisconnect > 3000) {
         Data.ddp.connect();
@@ -175,8 +181,9 @@ module.exports = {
     });
     Data.ddp.on('result', message => {
       const call = Data.calls.find(call => call.id == message.id);
-      if (typeof call.callback == 'function')
+      if (typeof call.callback == 'function') {
         call.callback(message.error, message.result);
+      }
       Data.calls.splice(Data.calls.findIndex(call => call.id == message.id), 1);
     });
 
@@ -228,8 +235,13 @@ module.exports = {
     let existing = false;
     for (var i in Data.subscriptions) {
       const sub = Data.subscriptions[i];
-      if (sub.inactive && sub.name === name && EJSON.equals(sub.params, params))
+      if (
+        sub.inactive &&
+        sub.name === name &&
+        EJSON.equals(sub.params, params)
+      ) {
         existing = sub;
+      }
     }
 
     let id;
@@ -243,7 +255,9 @@ module.exports = {
         // an onReady callback inside an autorun; the semantics we provide is
         // that at the time the sub first becomes ready, we call the last
         // onReady callback provided, if any.)
-        if (!existing.ready) existing.readyCallback = callbacks.onReady;
+        if (!existing.ready) {
+          existing.readyCallback = callbacks.onReady;
+        }
       }
       if (callbacks.onStop) {
         existing.stopCallback = callbacks.onStop;
@@ -279,10 +293,14 @@ module.exports = {
     // return a handle to the application.
     var handle = {
       stop: function() {
-        if (Data.subscriptions[id]) Data.subscriptions[id].stop();
+        if (Data.subscriptions[id]) {
+          Data.subscriptions[id].stop();
+        }
       },
       ready: function() {
-        if (!Data.subscriptions[id]) return false;
+        if (!Data.subscriptions[id]) {
+          return false;
+        }
 
         var record = Data.subscriptions[id];
         record.readyDeps.depend();

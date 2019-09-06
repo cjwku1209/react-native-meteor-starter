@@ -7,6 +7,7 @@
   "login": "Login",
   "logout": "Logout",
   "connected": "Connected",
+  "finalizeSettings": "Finalize Settings",
   "status": "Status",
   "authentication": "Authentication"
 }

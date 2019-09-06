@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { NavigationStack } from "./pages/navigator";
 
-export class App extends React.Component {
+export class Component extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -20,3 +20,5 @@ export class App extends React.Component {
 	}
 
 }
+
+export const App = Component;

@@ -7,7 +7,7 @@ export class LocaleAction {
 	static reset = () => {
 		return {
 			type: LocaleAction.RESET
-		}
+		};
 	};
 
 	static load = (locale, strings) => {

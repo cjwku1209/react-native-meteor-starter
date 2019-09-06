@@ -10,6 +10,7 @@ export const styles = {
 		borderWidth: 1
 	},
 	container: {
+		backgroundColor: "#F5FCFF",
 		margin: 8
 	}
 };

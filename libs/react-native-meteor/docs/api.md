@@ -76,7 +76,7 @@ Same as [ListView](https://facebook.github.io/react-native/docs/listview.html) C
 You need pass the `cursoredFind` option when you get your collection if you want to use cursor-like method:
 
 ```javascript
-Meteor.collection("collectionName", { cursoredFind: true })
+Meteor.collection('collectionName', { cursoredFind: true });
 ```
 
 Or you can simply use `find()` to get an array of documents. The option default to false for backward compatibility. Cursor methods are available to share code more easily between a react-native app and a standard Meteor app.

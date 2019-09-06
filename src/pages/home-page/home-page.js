@@ -12,9 +12,7 @@ class Component extends React.Component {
 		return (
 			<View style={styles.container}>
 				<Text style={styles.welcome}>
-					{
-						this.props.LocaleReducer.strings["welcome"]
-					}
+					{this.props.LocaleReducer.strings["welcome"]}
 				</Text>
 				<MeteorComponent/>
 				<TouchableOpacity
@@ -24,7 +22,7 @@ class Component extends React.Component {
 					}}
 				>
 					<Text>
-						Finalize Settings
+						{this.props.LocaleReducer.strings["finalizeSettings"]}
 					</Text>
 				</TouchableOpacity>
 			</View>
@@ -49,10 +47,12 @@ const Tracker = withTracker(() => {
 	};
 })(Component);
 
-export const HomePage = connect((store) => {
+export const Redux = connect((store) => {
 	return {
 		LocaleReducer: {
 			strings: store.LocaleReducer.strings
 		}
 	};
 })(Tracker);
+
+export const HomePage = Redux;

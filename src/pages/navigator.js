@@ -1,9 +1,10 @@
 import React from "react";
-import { createStackNavigator } from "react-navigation";
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
 import { HomePage } from "./home-page/home-page";
 import { MainPage } from "./main-page/main-page";
 
-export const NavigationStack = createStackNavigator({
+const Stack = createStackNavigator({
 	HomePage: {
 		screen: HomePage
 	},
@@ -14,3 +15,7 @@ export const NavigationStack = createStackNavigator({
 	initialRouteName: "HomePage",
 	headerMode: "none"
 });
+
+const Navigator = createAppContainer(Stack);
+
+export const NavigationStack = Navigator;

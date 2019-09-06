@@ -15,9 +15,7 @@ class Component extends React.Component {
 			<React.Fragment>
 				<View style={styles.container}>
 					<Text style={styles.welcome}>
-						{
-							this.props.LocaleReducer.strings["welcome"]
-						}
+						{this.props.LocaleReducer.strings["welcome"]}
 					</Text>
 				</View>
 			</React.Fragment>

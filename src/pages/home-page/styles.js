@@ -6,9 +6,10 @@ export const styles = {
 	},
 	container: {
 		flex: 1,
+		width: "100%",
 		justifyContent: "center",
-		alignItems: "center",
-		backgroundColor: "#F5FCFF"
+		backgroundColor: "#F5FCFF",
+		padding: 10
 	},
 	welcome: {
 		fontSize: 20,

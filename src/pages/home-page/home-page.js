@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import Meteor, { withTracker } from "react-native-meteor";
 import { Text, TouchableOpacity, View } from "react-native";
 import { MeteorComponent } from "../../components/meteor-component/meteor-component";
 import { LocaleAction } from "../../redux/locale/locale-action";
@@ -35,24 +34,12 @@ class Component extends React.Component {
 
 }
 
-const Tracker = withTracker(() => {
-	return {
-		Meteor: {
-			collection: {},
-			user: Meteor.user(),
-			userId: Meteor.userId(),
-			status: Meteor.status(),
-			loggingIn: Meteor.loggingIn()
-		}
-	};
-})(Component);
-
 export const Redux = connect((store) => {
 	return {
 		LocaleReducer: {
 			strings: store.LocaleReducer.strings
 		}
 	};
-})(Tracker);
+})(Component);
 
 export const HomePage = Redux;
